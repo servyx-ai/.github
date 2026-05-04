@@ -10,36 +10,25 @@ Servyx analyzes your cloud infrastructure, detects waste, and provides actionabl
 - **Collects** Kubernetes cluster state (pods, deployments, nodes, resource usage)
 - **Analyzes** costs with full billing and Cost Explorer integration
 - **Recommends** optimizations with estimated savings and risk levels
-- **Monitors** continuously with automated daily/hourly collection
+- **Monitors** continuously with automated collection
 
 ## How It Works
 
-1. **Connect your AWS account** — paste your read-only IAM credentials into Servyx. No binaries to install.
-2. **Connect your Kubernetes clusters** — install our lightweight Helm chart. Read-only, runs as a CronJob.
-3. **Get insights** — Servyx shows your infrastructure, costs, and optimization recommendations in a clean dashboard.
+1. **Connect your AWS account** — read-only access, no binaries to install
+2. **Connect your Kubernetes clusters** — lightweight Helm chart, read-only
+3. **Get insights** — infrastructure, costs, and optimization recommendations in a clean dashboard
 
-## Repositories
+## Open Source
 
-| Repo | Description | Visibility |
-|------|-------------|------------|
-| [servyx-nextjs](https://github.com/servyx-ai/servyx-nextjs) | Web platform & API | Private |
-| [servyx-k8s-collector](https://github.com/servyx-ai/servyx-k8s-collector) | Kubernetes collector agent + Helm chart | Public |
+| Repo | Description |
+|------|-------------|
+| [servyx-k8s-collector](https://github.com/servyx-ai/servyx-k8s-collector) | Kubernetes collector agent + Helm chart |
 
-## Security First
+## Security
 
-- AWS credentials are **encrypted at rest** with AES-256-GCM (unique key per account via HKDF)
-- Kubernetes collector is **strictly read-only** — it can only `get` and `list` resources
-- AWS IAM policy is **read-only** — no permissions to create, modify, or delete anything
-- Collector tokens are **SHA-256 hashed** — raw tokens are never stored
-
-## Tech Stack
-
-- **Frontend**: Next.js 16, TypeScript, Tailwind CSS
-- **Auth**: Firebase Authentication (Google Sign-In)
-- **Database**: Supabase PostgreSQL + Prisma 7
-- **AWS Collection**: Server-side via AWS SDK (no client-side binary)
-- **K8s Collection**: Rust binary deployed as CronJob via Helm
-- **Encryption**: AES-256-GCM with HKDF key derivation
+- All credentials are **encrypted at rest** with unique keys per account
+- All collectors are **strictly read-only** — no permissions to modify anything
+- Authentication tokens are **hashed** — raw tokens are never stored
 
 ---
 
